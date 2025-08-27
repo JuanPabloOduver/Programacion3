@@ -1,6 +1,6 @@
 defmodule EntradaDatos do
   def main do
-    "Ingresar texto a contar"
+    "Ingresar nombre a ingresar: "
     |> Util.ingresar(:texto)
     |> generar_mensaje()
     |> Util.mostrar_mensaje()
