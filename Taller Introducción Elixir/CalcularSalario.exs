@@ -6,12 +6,12 @@ defmodule CalcularSalario do
   - fecha: 06/09/2025
   - licencia: GNU GPL v3
   """
+
   # ------------------------------
   # Función principal
   # ------------------------------
 
   def main do
-
     # Pedir el nombre del empleado.
     nombre =
       "Ingrese el nombre del empleado = "
@@ -22,7 +22,7 @@ defmodule CalcularSalario do
       "Ingrese el salario del empleado = "
       |> Util.ingresar(:real)
 
-    # Pedir las horas extras que trabajo el empleado.
+    # Pedir las horas extras que trabajó el empleado.
     horas_extras =
       "Ingrese el numero de horas extras = "
       |> Util.ingresar(:entero)
@@ -30,8 +30,9 @@ defmodule CalcularSalario do
     # Calcular salario total.
     salario_total =
       calcular_salario_total(salario, horas_extras)
-      "El salario total de #{nombre} es $#{salario_total}"
-      |> Util.mostrar_mensaje()
+
+    "El salario total de #{nombre} es $#{salario_total}"
+    |> Util.mostrar_mensaje()
   end
 
   # ------------------------------
@@ -39,9 +40,20 @@ defmodule CalcularSalario do
   # ------------------------------
 
   def calcular_salario_total(salario, horas_extras) do
-    horas_extras *(salario * 1.5) |> Float.round(2) # ESTO ESTA RARO XDDDDDDD
-  end
+    case horas_extras do
+      0 ->
+        salario
 
+      _ ->
+        # Se calcula el valor por hora normal
+        valor_hora = salario / 45
+        # Se pagan horas extras al 150%
+        salario_extra = horas_extras * valor_hora * 1.5
+        # Total = salario base + extras
+        (salario + salario_extra)
+        |> Float.round(2)
+    end
+  end
 end
 
 # Ejecuta el programa.
