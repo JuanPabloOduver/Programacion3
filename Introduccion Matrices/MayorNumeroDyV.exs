@@ -14,4 +14,4 @@ defmodule MayorRecursivo do
   end
 end
 
-IO.puts MayorRecursivo.max_divide([1,2,3,4]) # => 4
+IO.puts MayorRecursivo.max_divide([1,2,3,4,5]) # => 5
