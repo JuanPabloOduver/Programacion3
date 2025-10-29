@@ -93,6 +93,10 @@ defmodule Util do
     IO.puts(:standard_error, mensaje)
   end
 
+  # ------------------------------
+  # Ingresar valores booleanos
+  # ------------------------------
+
   def ingresar(mensaje, :boolean) do
     valor =
       mensaje
@@ -101,4 +105,17 @@ defmodule Util do
 
       Enum.member?(["si", "sí", "s"], valor)
   end
+
+  # ------------------------------
+  # Validar datos de registro de cliente
+  # ------------------------------
+
+  def validate_registration_data(%{id_number: id, password: password}) do
+    if id != nil and id != "" and password != nil and password != "" do
+      {:ok, "Datos básicos presentes"}
+    else
+      {:error, "La cédula o la contraseña no pueden estar vacías."}
+    end
+  end
+
 end
